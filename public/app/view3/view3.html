@@ -1,7 +1,20 @@
-<div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
-<p>This is the partial for view 3.</p>
-<p>Data is fetched from a REST service, connected to MongoDB </p>
+<!--div class="alert alert-danger" role="alert" ng-show="error">{{error}} </div>-->
+<div class="alert alert-danger" role="alert" ng-show="error">{{error}} </div>
+<p ng-show="isAuthenticated">This is the partial for view 3.
+  Data is fetched from a REST service, connected to MongoDB <br>
+  Add Courses</p>
+<div ng-show="isAuthenticated">
+  <br>
+  <input type="text" required=""/>
+  <button type="submit" ng-click="saveCourse()"  class="btn btn-primary">Add Course</button>
+  Courses:
+  <select ng-model="repoSortOrder" ng-show="isAuthenticated">
+    <option value="+name">Period 1 http</option>
+    <option value="-stargazers_count">Period 2</option>
+    <option value="+language">Period 3 node</option>
+    <option value="+language">Period 4 angular</option>
+  </select>
+</div>
 <ul>
   <li ng-repeat="user in users"> {{user.userName}} {{user.email}} </li>
 </ul>
-</p>
