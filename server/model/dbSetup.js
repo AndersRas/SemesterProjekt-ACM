@@ -19,7 +19,7 @@ function insert() {
         _id: 1,
         name: "datA"
         }, {
-        id: 2,
+        _id: 2,
         name: "datB"
         }];
 
