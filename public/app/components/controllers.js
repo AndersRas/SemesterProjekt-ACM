@@ -57,10 +57,18 @@ angular.module('myAppRename.controllers', []).
       $location.path("/view1");
     }
   })
+    $scope.points = function (){
+      $scope.isAuthenticated = false;
+    }
 
   .controller('MyCtrl2', function ($scope) {
-    // write MyCtrl2 here
+      $scope.isAuthenticated = true;
+      if($scope.password == true){
+        passwordDigest($scope.password = new $scope.password)
+      }
+      $location.path("/view2", "/view3")
   });
+
 
 
 
