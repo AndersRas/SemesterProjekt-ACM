@@ -1,11 +1,46 @@
 <div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
-<p>This is the partial for view 2.</p>
-<p style="color: darkgreen">Partial (view2.html) is located in the folder for this view (app/view2)</p>
 <br/>
-<p style="color: #105cb6">
 
-  {{info.msg}}
+
+
+<div class="form-horizontal">
+  <fieldset>
+    <legend>{{infoOnStudents[0].userName}}</legend>
+
+    <label style="width: 6em">Name:</label>
+    <div>{{infoOnStudents[0].lastName}}, {{infoOnStudents[0].firstName}}</div><br/>
+
+    <label style="width: 6em">ClassName:</label>
+    <div>{{infoOnClass[0].name}}</div><br/>
+
+  </fieldset>
+</div>
+<p>
 </p>
 
+{{info.msg}}
+</p>
 
+<div class="col-md-8">
+
+  <table class="table table-striped" ng-show="isUser">
+    <thead>
+    <tr>
+      <th>Period</th>
+      <th ng-repeat="task in infoOnTasks">{{task.name}}</th>
+      <th>Max Points</th>
+      <th>Total Points</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="period in periodInfo">
+      <th>{{task.periodId}}</th>
+      <th>{{task.maxPoints}}</th>
+      <th>{{task.maxPoints}}</th>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>
 
