@@ -1,20 +1,84 @@
 <!--div class="alert alert-danger" role="alert" ng-show="error">{{error}} </div>-->
 <div class="alert alert-danger" role="alert" ng-show="error">{{error}} </div>
-<p ng-show="isAuthenticated">This is the partial for view 3.
-  Data is fetched from a REST service, connected to MongoDB <br>
-  Add Courses</p>
-<div ng-show="isAuthenticated">
+<div class="periods" ng-show="isAdmin">
   <br>
-  <input type="text" required=""/>
-  <button type="submit" ng-click="saveCourse()"  class="btn btn-primary">Add Course</button>
-  Courses:
-  <select ng-model="repoSortOrder" ng-show="isAuthenticated">
-    <option value="">Period 1 http</option>
-    <option value="">Period 2</option>
-    <option value="">Period 3 node</option>
-    <option value="">Period 4 angular</option>
-  </select>
-</div>
-<ul>
-  <li ng-repeat="user in users"> {{user.userName}} {{user.email}} </li>
-</ul>
+  <div ng-repeat="class in foundClasses">
+    <button ng-click="getClass(class._id)">Class {{class.name}}</button>
+
+    <div class="row" ng-show="isAdmin">
+
+      <div class="col-md-1">
+        <table class="table table-striped table-hover">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th ng-repeat="task in newTask">{{task.name}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="student in newStudent">
+
+            <td>{{student.firstName}} {{student.lastName}}</td>
+            <td ng-repeat="task in newTask">{{task.name}}</td>
+            <td ng-repeat="points in foundPoints | filter:student._id">
+                {{points.value}}
+            </td>
+            <div ng-repeat="points in foundPoints">
+                <td ng-if="points.studentId==student._id">{{points}}</td>
+            </div>
+          </tr>
+          </tbody>
+        </table>
+
+        <div class="col-md-4">
+        <form class="form-horizontal">
+        <fieldset >
+        <legend>add new student</legend>
+        <div class="form-group">
+        <label for="UserName" class="control-label col-xs-1" ><span class="label label-info">Username</span></label>
+        <div class="col-xs-9">
+        <input type="text" ng-model="newstudent.username" class="form-control" id="UserName" placeholder="UserName">
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="firstName" class="control-label col-xs-1"><span class="label label-info">First name</span></label>
+        <div class="col-xs-9">
+        <input type="text" ng-model="newstudent.firstName" class="form-control" id="firstName" placeholder="First Name">
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="LastName" class="control-label col-xs-1"><span class="label label-info">Last name</span></label>
+        <div class="col-xs-9">
+        <input type="text" ng-model="newstudent.lastName" class="form-control" id="LastName" placeholder="Last Name">
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="email" class="control-label col-xs-5"><span class="label label-info">Email</span></label>
+        <div class="col-xs-9">
+        <input type="text" ng-model="newstudent.email" class="form-control" id="email" placeholder="Email">
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="address" class="control-label col-xs-5"><span class="label label-info">Address</span></label>
+        <div class="col-xs-9">
+        <input type="text" ng-model="newstudent.address" class="form-control" id="address" placeholder="address">
+        </div>
+        </div>
+        </fieldset>
+        </form>
+        <div class="form-group">
+        <button type="submit" ng-click="newStudent()"  class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="periods" ng-show="isAdmin">
+    <div class="row">
+      <button ng-click="toggle()">Period 1</button>
+      <button ng-click="toggle()">Period 2</button>
+      <button ng-click="toggle()">Period 3</button>
+      <button ng-click="toggle()">Period 4</button>
+    </div>
+</div></div>
