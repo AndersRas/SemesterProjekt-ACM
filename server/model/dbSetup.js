@@ -130,16 +130,16 @@ function insert() {
     var classessx = 0;
     classes.forEach(function (classes) {
         classes.classId = 1;
-        var newClasses = new model.classesModel(classes);
+        var newClasses = new model.classModel(classes);
         newClasses.save();
         classessx++;
     });
-    console.log(classessx + " students saved");
+    console.log(classessx + " classes saved");
 
     var studentsx = 0;
     students.forEach(function (student) {
         student.classId = 1;
-        var newStudent = new model.studentsModel(student);
+        var newStudent = new model.studentModel(student);
         newStudent.save();
         studentsx++;
     });
@@ -148,11 +148,11 @@ function insert() {
     var teachersx = 0;
     teachers.forEach(function (teachers) {
         teachers.classId = 1;
-        var newStudent = new model.studentsModel(teachers);
-        newStudent.save();
+        var newTeacher = new model.teacherModel(teachers);
+        newTeacher.save();
         teachersx++;
     });
-    console.log(teachersx + " students saved");
+    console.log(teachersx + " teachers saved");
 
     var periodsx = 0;
     periods.forEach(function (period) {
