@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var period = mongoose.model('Periods');
-var point = mongoose.model('Points');
+var period = mongoose.model('Period');
+var point = mongoose.model('Point');
 var tasks = mongoose.model('Task');
-var classes = mongoose.model('Classes');
-var student = mongoose.model('Students');
+var classes = mongoose.model('Class');
+var student = mongoose.model('Student');
 
 var dbLayer = require('../dataLayer');
 
@@ -16,7 +16,7 @@ router.get('/getStudents', function(req, res) {
     res.end("Error: "+global.mongo_error+" To see a list of users here, make sure you have started the database and set up some test users (see model-->db.js for instructions)");
     return;
 
-    dbLayer.getStudents(function (err, data) {
+    dbLayer.getStudent(function (err, data) {
       if (err) {
         res.status(err.status || 400);
         res.send(JSON.stringify({error: err.toString()}));
