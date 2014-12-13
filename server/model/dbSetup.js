@@ -10,7 +10,7 @@ function remove() {
     model.pointModel.remove({}).exec();
     model.taskModel.remove({}).exec();
     model.periodModel.remove({}).exec();
-    model.teacherScema.remove({}).exec();
+    model.teacherModel.remove({}).exec();
     model.studentModel.remove({}).exec();
 }
 
