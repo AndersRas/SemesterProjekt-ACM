@@ -1,9 +1,19 @@
 body {
-  padding: 50px;
+  padding: 70px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
 }
 
 a {
   color: #00B7FF;
 }
+
+.classbtn{
+  margin-right: 15px;
+}
+
+#markStudent{
+  width:40px;
+}
+
 

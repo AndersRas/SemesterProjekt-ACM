@@ -1,19 +1,6 @@
 var mongoose = require( 'mongoose' );
 
-/*
 
-Note:
-To this test project as it is:
-
-Start your MongoDB database.
-Start mongo.exe and do:
-  use testdb
-  db.testusers.insert({userName : "Lars", email :"lam@cphbusiness.dk",pw: "test",created : new Date()})
-  db.testusers.insert({userName : "Henrik", email :"hsty@cphbusiness.dk",pw: "test",created : new Date()})
-  db.testusers.insert({userName : "Tobias", email :"tog@cphbusiness.dk",pw: "test",created : new Date()})
-  db.testusers.insert({userName : "Anders", email :"aka@cphbusiness.dk",pw: "test",created : new Date()})
-
-*/
 var dbURI;
 
 //This is set by the backend tests
@@ -21,7 +8,7 @@ if( typeof global.TEST_DATABASE != "undefined" ) {
   dbURI = global.TEST_DATABASE;
 }
 else{
-  dbURI = 'mongodb://localhost/testdb';
+  dbURI = 'mongodb://sem3projekt:login@ds051990.mongolab.com:51990/schooldb';
 }
 
 mongoose.connect(dbURI);
@@ -47,14 +34,58 @@ process.on('SIGINT', function() {
 });
 
 
-/** User SCHEMA **/
-/** Replace this Schema with your own(s) **/
-var usersSchema = new mongoose.Schema({
+var studentSchema = new mongoose.Schema({
+  _id : Number,
+  firstName : String,
+  lastName : String,
   userName : String,
-  email: {type: String, unique: true},
-  pw: String,
-  created: { type: Date, default: new Date() }
+  passWord : String,
+  classId : {type: Number, ref: 'class'}
 });
 
-mongoose.model( 'User', usersSchema,"testusers" );
+var teacherSchema = new mongoose.Schema({
+  _id : Number,
+  firstName : String,
+  lastName : String,
+  userName : String,
+  passWord : String,
+  classId : {type: Number, ref: 'class'}
+});
+
+var pointSchema = new mongoose.Schema({
+  _id : Number,
+  value : Number,
+  studentId : {type: Number, ref: 'student'},
+  taskId : {type: Number, ref: 'task'}
+});
+
+var taskSchema = new mongoose.Schema({
+  _id : Number,
+  name : String,
+  maxPoints : Number,
+  description : String,
+  periodId : {type: Number, ref: 'period'}
+});
+
+var periodSchema = new mongoose.Schema({
+  _id : Number,
+  number : Number,
+  name : String,
+  startDate : Date,
+  endDate : Date,
+  classId : {type: Number, ref: 'classes'}
+});
+
+var classSchema = new mongoose.Schema({
+  _id : Number,
+  name : String
+});
+
+exports.studentModel = mongoose.model('Student', studentSchema, 'student');
+exports.teacherModel = mongoose.model('Teacher', teacherSchema, 'teacher');
+exports.pointModel = mongoose.model('Point', pointSchema, 'point');
+exports.taskModel = mongoose.model('Task',taskSchema, 'task');
+exports.periodModel = mongoose.model('Period', periodSchema, 'period');
+exports.classModel = mongoose.model('Class', classSchema, 'class');
+
 
