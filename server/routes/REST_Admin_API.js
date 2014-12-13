@@ -71,7 +71,7 @@ router.get('/getStudents', function(req, res) {
           return;
         }
         var studentId = req.params.studentId;
-        dbLayer.getStudyPointByStudentId(studentId, function (err, data) {
+        dbLayer.getStudentsStudyPointsId(studentId, function (err, data) {
           if (err) {
             res.status(err.status || 400);
             res.send(JSON.stringify({error: err.toString()}));
@@ -159,7 +159,7 @@ router.get('/getStudents', function(req, res) {
     });
     router.get('/getTasksPeriods/:_id', function (req, res) {
       var periodId = req.params._id;
-      dbLayer.getTaskInPeriods(periodId,function (err, data) {
+      dbLayer.getTasksInPeriods(periodId,function (err, data) {
         if (err) {
           res.status(err.status || 400);
           res.send(JSON.stringify({error: err.toString()}));
