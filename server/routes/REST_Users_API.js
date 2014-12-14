@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var period = mongoose('Periods');
-var student = mongoose('Students');
-var classes = mongoose('Classes');
-var point = mongoose('Points');
+var period = mongoose.model('Period');
+var student = mongoose.model('Student');
+var classes = mongoose.model('Class');
+var point = mongoose.model('Point');
 var dbLayer =require('../UserDataLayer')
 
 var router = express.Router();
