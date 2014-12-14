@@ -9,7 +9,6 @@ var student = mongoose.model('Student');
 
 var dbLayer = require('../dataLayer');
 
-/* GET A User From The DataBase */
 router.get('/getStudents', function(req, res) {
   if(typeof global.mongo_error !== "undefined"){
     res.status(500);

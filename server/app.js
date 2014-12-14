@@ -18,7 +18,7 @@ var app = express();
 if(process.env.NODE_ENV || typeof global.SKIP_AUTHENTICATION == "undefined") {         // indkommenterer Log-in!
 // Protected Routes (via /api routes with JWT)
   app.use('/userApi', expressJwt({secret: require("./security/secrets").secretTokenUser}));
-  app.use('/adminApi', expressJwt({secret: require("./security/secrets").secretTokenAdmin}));   // er dette kuns de 2 test ???
+  app.use('/adminApi', expressJwt({secret: require("./security/secrets").secretTokenAdmin}));
 }
 
 // view engine setup

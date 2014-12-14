@@ -56,7 +56,7 @@ function getTasksInPeriods(period, callback){
 
 function getStudent(userName,callback) {
     studentsModel.find({userName:userName})
-        //.populate('classId')  // dokument classes i mongodb  virker NU!
+        //.populate('classId')
         .exec(function(err, data){
             if (err) callback(err);
             else {
@@ -78,7 +78,7 @@ function getStudents(callback) {
 
 function getStudentByClass(classId,callback) {
     studentsModel.find({classId:classId})
-        //.populate('classId')  // dokument classes i mongodb  virker NU!
+        //.populate('classId')
         .exec(function(err, data){
             if (err) callback(err);
             else {
